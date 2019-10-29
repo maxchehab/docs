@@ -34,6 +34,10 @@
     sans-serif;
   --font-mono: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
     Bitstream Vera Sans Mono, Courier New, monospace;
+  --font-size-primary: 1rem;
+  --font-size-small: 0.875rem;
+  --line-height-primary: 1.5em;
+  --line-height-small: 1.571em;
 }
 
 /* Helper classes */
