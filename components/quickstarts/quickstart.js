@@ -1,7 +1,8 @@
 import Link from 'next/link'
+import { useAmp } from 'next/amp'
 import { H4 } from '~/components/text'
 import { Image } from '~/components/media'
-import { useAmp } from 'next/amp'
+import { DeployButton } from '~/components/buttons'
 
 export default function({ quickstart, icons, href, deployUrl }) {
   const isAmp = useAmp()
@@ -18,6 +19,14 @@ export default function({ quickstart, icons, href, deployUrl }) {
         src={source}
       />
     )
+  // <a href={deployUrl} className="deploy-button">
+  //   <Image
+  //     src="https://zeit.co/button"
+  //     width={104}
+  //     height={36}
+  //     align="left"
+  //   />
+  // </a>
 
   return (
     <div className="quickstart">
@@ -44,16 +53,7 @@ export default function({ quickstart, icons, href, deployUrl }) {
           </span>
           <H4>{quickstart}</H4>
           <span className="note">Read the guide</span>
-          {deployUrl && (
-            <a href={deployUrl} className="deploy-button">
-              <Image
-                src="https://zeit.co/button"
-                width={104}
-                height={36}
-                align="left"
-              />
-            </a>
-          )}
+          {deployUrl && <DeployButton url={deployUrl} />}
         </a>
       </Link>
       <style jsx>{`
@@ -73,7 +73,7 @@ export default function({ quickstart, icons, href, deployUrl }) {
           border-color: transparent;
         }
 
-        .quickstart .deploy-button {
+        .quickstart :global(.deploy-button) {
           margin-top: 24px;
         }
 
