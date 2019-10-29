@@ -19,14 +19,6 @@ export default function({ quickstart, icons, href, deployUrl }) {
         src={source}
       />
     )
-  // <a href={deployUrl} className="deploy-button">
-  //   <Image
-  //     src="https://zeit.co/button"
-  //     width={104}
-  //     height={36}
-  //     align="left"
-  //   />
-  // </a>
 
   return (
     <div className="quickstart">
