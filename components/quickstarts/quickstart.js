@@ -1,8 +1,7 @@
-import Link from 'next/link'
 import { useAmp } from 'next/amp'
 import { H4 } from '~/components/text'
-import { Image } from '~/components/media'
 import { DeployButton } from '~/components/buttons'
+import { GenericLink } from '~/components/text/link'
 
 export default function({ quickstart, icons, href, deployUrl }) {
   const isAmp = useAmp()
@@ -22,34 +21,33 @@ export default function({ quickstart, icons, href, deployUrl }) {
 
   return (
     <div className="quickstart">
-      <Link href={href}>
-        <a>
-          <span className="quickstart-icons">
-            {Array.isArray(icons) ? (
-              icons.map(icon =>
-                typeof icon === 'object' ? (
-                  <span key={icon.src} style={{ backgroundColor: icon.color }}>
-                    <Icon source={icon.src} />
-                  </span>
-                ) : (
-                  <Icon source={icon} key={icon} />
-                )
-              )
-            ) : typeof icons === 'object' ? (
-              <span style={{ backgroundColor: icons.color }}>
-                <Icon source={icons.src} />
+      <span className="quickstart-icons">
+        {Array.isArray(icons) ? (
+          icons.map(icon =>
+            typeof icon === 'object' ? (
+              <span key={icon.src} style={{ backgroundColor: icon.color }}>
+                <Icon source={icon.src} />
               </span>
             ) : (
-              <Icon source={icons} />
-            )}
+              <Icon source={icon} key={icon} />
+            )
+          )
+        ) : typeof icons === 'object' ? (
+          <span style={{ backgroundColor: icons.color }}>
+            <Icon source={icons.src} />
           </span>
-          <H4>{quickstart}</H4>
-          <span className="note">Read the guide</span>
-          {deployUrl && <DeployButton url={deployUrl} />}
-        </a>
-      </Link>
+        ) : (
+          <Icon source={icons} />
+        )}
+      </span>
+      <H4>{quickstart}</H4>
+      <span className="note">
+        <GenericLink href={href}>Read the guide</GenericLink>
+      </span>
+      {deployUrl && <DeployButton url={deployUrl} />}
+
       <style jsx>{`
-        .quickstart > :global(a) {
+        .quickstart {
           border-radius: 4px;
           border: 1px solid var(--accents-2);
           color: var(--accents-6);
@@ -58,11 +56,6 @@ export default function({ quickstart, icons, href, deployUrl }) {
           flex-direction: column;
           transition: box-shadow 0.1s ease, border 0.1s ease;
           text-decoration: none;
-        }
-
-        .quickstart > :global(a:hover) {
-          box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
-          border-color: transparent;
         }
 
         .quickstart :global(.deploy-button) {

@@ -11,7 +11,7 @@ export default class Card extends Component {
       <div className={cn('card', className)} {...props}>
         <GenericLink href={href} as={as}>
           {title && <H4>{title}</H4>}
-          <Text>{children}</Text>
+          <Text small>{children}</Text>
         </GenericLink>
 
         <style jsx>{`
